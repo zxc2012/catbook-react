@@ -34,7 +34,6 @@ expandSnake = (amount) => {
 }
 
 onSnake = (position) => {
-    console.log(snakeBody)
     return snakeBody.some(segment => {
         return equalPositions(segment, position)
     })
@@ -49,4 +48,17 @@ addSegments = () => {
         snakeBody.push({ x: snakeBody[snakeBody.length - 1].x, y: snakeBody[snakeBody.length - 1].y })
     }
     newSegments = 0
+}
+
+snakeOutOfBounds = () => {
+    return outsideGrid(snakeBody[0])
+}
+
+snakeIntersectSelf = () => {
+    for (let i = 1; i < snakeBody.length; i++) {
+        if (equalPositions(snakeBody[i], snakeBody[0])) {
+            return true;
+        }
+    }
+    return false
 }

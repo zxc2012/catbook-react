@@ -10,14 +10,15 @@ updateSnake = () => {
         snakeBody[i + 1] = { x: snakeBody[i].x, y: snakeBody[i].y }
     }
 
-    snakeBody[0].y += inputDirection.y
-    snakeBody[0].x += inputDirection.x
+    let newDirection = getInputDirection()
+    snakeBody[0].y += newDirection.y
+    snakeBody[0].x += newDirection.x
 }
 
 drawSnake = (gameBoard) => {
     snakeBody.forEach(segment => {
         const snakeElement = document.createElement('div');
-        snakeElement.style.gridRowStart = -segment.y
+        snakeElement.style.gridRowStart = segment.y
         snakeElement.style.gridColumnStart = segment.x
         snakeElement.classList.add('snake')
         gameBoard.appendChild(snakeElement)

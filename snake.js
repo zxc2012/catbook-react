@@ -13,6 +13,7 @@ const updateSnake = () => {
     const snakeDirection = getInputDirection();
     snakeBody[0].x += snakeDirection.x;
     snakeBody[0].y += snakeDirection.y;
+    if(collisionSnake(snakeBody[0])||onMargin(snakeBody[0]))gameOver=true;
 }
 
 const drawSnake = () => {
@@ -34,7 +35,14 @@ const onSnake = (position) => {
     }
     return false;
 }
-
+const collisionSnake = (position) => {
+    for (let i = 1; i < snakeBody.length; i++) {
+        if (equalPositions(position, snakeBody[i])) {
+            return true;
+        }
+    }
+    return false;
+}
 const equalPositions = (pos1, pos2) => {
     return pos1.x === pos2.x && pos1.y === pos2.y;
 }

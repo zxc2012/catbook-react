@@ -70,9 +70,12 @@ class NewStory extends Component {
   }
 
   // TODO (step4): implement addStory
-
+  addStory=(value)=>{
+    post("/api/story",{content:value});
+  }
   render() {
     // TODO (step4): implement render
+    return <NewPostInput defaultText="type what you want to post!" onSubmit={this.addStory}/>
   }
 }
 
@@ -88,11 +91,11 @@ class NewComment extends Component {
   }
 
   addComment = (value) => {
-    // TODO (step8): implement addComment (refer to NewStory)
+    post("/api/comment",{parent:this.props._id,content:value});
   };
 
   render() {
-    // TODO (step8): implement render (refer to NewStory)
+    return <NewPostInput defaultText="type what you want to post!" onSubmit={this.addComment}/>
   }
 }
 
